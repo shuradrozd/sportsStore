@@ -7,8 +7,4 @@ angular.module("sportsStore").controller("sportsStoreCtrl", function($scope) {
 		{ name: "Product4", description: "A product", category: "Category #3", price: 202 }]
 	};
 
-	$scope.selectCategory = function(item) {
-		$scope.select = item;
-	};
-
 });
