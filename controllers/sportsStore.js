@@ -1,10 +1,15 @@
-angular.module("sportsStore").controller("sportsStoreCtrl", function($scope) {
-	$scope.data = {
-		products: [
-		{ name: "Product1", description: "A product", category: "Category #1", price: 100 },
-		{ name: "Product2", description: "A product", category: "Category #1", price: 110 },
-		{ name: "Product3", description: "A product", category: "Category #2", price: 210 },
-		{ name: "Product4", description: "A product", category: "Category #3", price: 202 }]
-	};
+angular.module("sportsStore")
+.constant("dataUrl", "http://localhost:5500/products")
+.controller("sportsStoreCtrl", function($scope, $http, dataUrl) {
+	$scope.data = {};
 
+	$http.get(dataUrl)
+	.then(function(response) {
+		$scope.data.products = response.data;
+	})
+	.catch(function(response, status) {
+		$scope.data.error = response.status;
+    console.error('Data error', response.status, response.data);
+  	});
+	
 });
